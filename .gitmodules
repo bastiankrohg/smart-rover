@@ -1,0 +1,3 @@
+[submodule "testing/mars-rover"]
+	path = testing/mars-rover
+	url = git@github.com:4tronix/mars-rover.git
