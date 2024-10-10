@@ -3,7 +3,7 @@ Robotics project - final year INSA Toulouse
 
 # Nice to have
 ## Export files from raspberry pi
-scp rover@<IP Address of Raspberry Pi>:<Path to File> 
+scp rover@\<IP Address of Raspberry Pi>:\<Path to File> 
 
 ## Safely shut down raspberry pi
 sudo halt -p
