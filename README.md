@@ -1,6 +1,9 @@
 # Rover
 Robotics project - final year INSA Toulouse
 
+## Safely shut down raspberry pi
+sudo halt -p
+
 details of assembly : https://4tronix.co.uk/blog/?p=2112
 Rover coding examples : https://github.com/4tronix/MARS-Rover
 How to set up static ip on raspberry pi: https://www.youtube.com/watch?v=d1y1ZIIX-XQ&t=293s
