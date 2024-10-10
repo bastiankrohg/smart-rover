@@ -8,6 +8,10 @@ scp rover@\<IP Address of Raspberry Pi>:\<Path to File>
 ## Safely shut down raspberry pi
 sudo halt -p
 
+## Controlling the raspberry pi camera
+Guide: https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/3
+
+# Assembly and setup information
 details of assembly : https://4tronix.co.uk/blog/?p=2112
 Rover coding examples : https://github.com/4tronix/MARS-Rover
 How to set up static ip on raspberry pi: https://www.youtube.com/watch?v=d1y1ZIIX-XQ&t=293s
