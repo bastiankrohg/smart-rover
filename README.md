@@ -20,3 +20,12 @@ how to connect to the raspberry :
 ![image](https://github.com/user-attachments/assets/ab559dd2-974e-4bb3-a19c-3d8b0c0d7cd0)
 
 
+### Adding git ssh verification for raspberry pi
+First, ensure that the git repo is cloned using ssh, not https to avoid having to reconfigure the "remote.origin.url".
+If need be, use the following command: git config remote.origin.url "git@github.com:bastiankrohg/smart-rover.git"
+Generate key and add to git:
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?platform=linux
+
+Ensure user.email + user.name is set globally, if requested.
+
+
