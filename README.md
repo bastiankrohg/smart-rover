@@ -13,6 +13,7 @@ IP @ rover2 : 192.168.0.169
 
 ### Connecting remotely to rovers
 Rover: ssh rover@rover.local **or** ssh rover@192.168.0.168
+
 Rover2: ssh rover2@rover2.local **or** ssh rover2@192.168.0.169
 
 how to connect to the raspberry :
