@@ -1,12 +1,20 @@
 # Rover
 Robotics project - final year INSA Toulouse
 
+## Things we might want to check out
+https://medium.com/home-wireless/headless-streaming-video-with-the-raspberry-pi-zero-w-and-raspberry-pi-camera-38bef1968e1
+https://www.linux-projects.org
+https://www.linux-projects.org/uv4l/object-detection-with-depth-estimation/
+https://github.com/Qengineering/TensorFlow_Lite_Classification_RPi_zero
+
 # Nice to have
 ## Export files from raspberry pi
 scp rover@\<IP Address of Raspberry Pi>:\<Path to File> 
 
 ## Safely shut down raspberry pi
-sudo halt -p
+sudo halt -h
+or: sudo poweroff
+or: sudo shutdown -h now 
 
 ## Controlling the raspberry pi camera
 Guide: https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/3
