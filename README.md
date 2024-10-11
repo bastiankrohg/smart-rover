@@ -42,7 +42,7 @@ Ensure user.email + user.name is set globally, if requested.
 #### Testing Rover with python examples from 4tronix:
 SETUP & TEST ROVER - Missing packages to run calibrateServos.py:
 First create a venv and activate it -> link: https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://docs.python.org/3/library/venv.html&ved=2ahUKEwiMwJet44aJAxVkfKQEHfyqNXAQFnoECAgQAQ&usg=AOvVaw1SQ6VGTcJCX7W6wOs1SpnV
-- missing rpi-ws281x -> pip install rpi-ws281x
+- missing rpi-ws281x -> sudo pip install rpi-ws281x --break-system-packages
 - missing RPi.GPIO -> pip install RPi.GPIO
 - pip3 install smbus
 - smbus.SMBus(1) FileNotFoundError: No such file or directory -> Activate i2c interface using sudo raspi-config -> interface -> enable (enable both i2c & SPI)
