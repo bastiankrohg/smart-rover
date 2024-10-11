@@ -45,6 +45,7 @@ First create a venv and activate it -> link: https://www.google.com/url?sa=t&sou
 - missing rpi-ws281x -> pip install rpi-ws281x
 - missing RPi.GPIO -> pip install RPi.GPIO
 - pip3 install smbus
-- ..
+- smbus.SMBus(1) FileNotFoundError: No such file or directory -> Activate i2c interface using sudo raspi-config -> interface -> enable (enable both i2c & SPI)
+- ...
 
 
