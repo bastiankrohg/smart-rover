@@ -38,6 +38,9 @@ https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a
 
 Ensure user.email + user.name is set globally, if requested.
 
+### Rover python guide
+- https://4tronix.co.uk/blog/?p=2409
+
 ### Known Issues
 #### Testing Rover with python examples from 4tronix:
 SETUP & TEST ROVER - Missing packages to run calibrateServos.py:
