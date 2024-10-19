@@ -12,12 +12,26 @@ https://github.com/Qengineering/TensorFlow_Lite_Classification_RPi_zero
 scp rover@\<IP Address of Raspberry Pi>:\<Path to File> 
 
 ## Safely shut down raspberry pi
-sudo halt -h
+sudo halt -p
 or: sudo poweroff
 or: sudo shutdown -h now 
 
 ## Controlling the raspberry pi camera
 Guide: https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/3
+
+## Set up rtsp stream for raspi and raspicam
+https://github.com/bluenviron/mediamtx?tab=readme-ov-file#rtsp-cameras-and-servers
+Install mediamtx, set up using [this guide]([url](https://james-batchelor.com/index.php/2023/11/10/install-mediamtx-on-raspbian-bookworm/))
+NB! I lowered the bitrate and the resolution because with the configuration in James' example it crashed (not sure if internet repeater or pi zero who crashed).
+I now use 
+paths:
+  cam:
+    source: rpiCamera
+    rpiCameraWidth: 640 # instead of 1080
+    rpiCameraHeight: 480 # instead of 720
+    rpiCameraVFlip: true
+    rpiCameraHFlip: true
+    rpiCameraBitrate: 500000 # instead of 1500000
 
 # Assembly and setup information
 details of assembly : https://4tronix.co.uk/blog/?p=2112
