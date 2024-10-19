@@ -8,6 +8,9 @@ https://www.linux-projects.org/uv4l/object-detection-with-depth-estimation/
 https://github.com/Qengineering/TensorFlow_Lite_Classification_RPi_zero
 
 # Nice to have
+## Adding several known wifis
+https://raspberrypi.stackexchange.com/questions/11631/how-to-setup-multiple-wifi-networks
+
 ## Export files from raspberry pi
 scp rover@\<IP Address of Raspberry Pi>:\<Path to File> 
 
