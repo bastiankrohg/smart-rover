@@ -1,3 +1,6 @@
 [submodule "testing/mars-rover"]
 	path = testing/mars-rover
 	url = git@github.com:4tronix/mars-rover.git
+[submodule "rover-vision"]
+	path = rover-vision
+	url = git@github.com:bastiankrohg/rover-vision.git
