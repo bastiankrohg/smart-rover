@@ -4,3 +4,6 @@
 [submodule "rover-vision"]
 	path = rover-vision
 	url = git@github.com:bastiankrohg/rover-vision.git
+[submodule "rover-protos"]
+	path = rover-protos
+	url = https://github.com/bastiankrohg/rover-protos.git
