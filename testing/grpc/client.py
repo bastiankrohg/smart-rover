@@ -1,6 +1,6 @@
 import grpc
-from protos.generated import mars_rover_pb2
-from protos.generated import mars_rover_pb2_grpc
+from protos import mars_rover_pb2
+from protos import mars_rover_pb2_grpc
 def run():
     with grpc.insecure_channel("localhost:50051") as channel:
         stub = mars_rover_pb2_grpc.RoverServiceStub(channel)
