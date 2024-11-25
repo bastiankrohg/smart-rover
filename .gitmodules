@@ -4,3 +4,12 @@
 [submodule "rover-vision"]
 	path = rover-vision
 	url = git@github.com:bastiankrohg/rover-vision.git
+[submodule "rover-protos"]
+	path = rover-protos
+	url = https://github.com/bastiankrohg/rover-protos.git
+[submodule "rover-coral"]
+	path = rover-coral
+	url = https://github.com/bastiankrohg/rover-coral.git
+[submodule "rover-pi"]
+	path = rover-pi
+	url = https://github.com/bastiankrohg/rover-pi.git
