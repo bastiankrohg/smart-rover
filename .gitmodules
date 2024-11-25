@@ -13,3 +13,6 @@
 [submodule "rover-pi"]
 	path = rover-pi
 	url = https://github.com/bastiankrohg/rover-pi.git
+[submodule "grpc"]
+	path = grpc
+	url = https://github.com/grpc/grpc
