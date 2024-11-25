@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package marsrover;
+
+service RoverService {
+  // Commands
+  // Locomotion
+  rpc DriveForward(DriveRequest) returns (CommandResponse);
+  rpc Reverse(DriveRequest) returns (CommandResponse);
+  rpc TurnLeft(TurnRequest) returns (CommandResponse);
+  rpc TurnRight(TurnRequest) returns (CommandResponse);
+  rpc TurnOnSpot(TurnRequest) returns (CommandResponse);
+
+  // POV
+  rpc RotatePeriscope(RotateRequest) returns (CommandResponse);
+
+  rpc ControlHeadlights(LEDRequest) returns (CommandResponse);
+  rpc ControlWheelLEDs(WheelLEDRequest) returns (CommandResponse);
+  
+
+  // Measurements
+  rpc GetUltrasoundMeasurement(UltrasoundRequest) returns (UltrasoundResponse);
+
+  // Camera
+  // New service to get the camera stream URL
+  rpc GetCameraStream(CameraStreamRequest) returns (CameraStreamResponse);
+}
+
+message DriveRequest {
+  float speed = 1;
+}
+
+message StopRequest {}
+
+message TurnRequest {
+  float angle = 1;
+}
+
+message RotateRequest {
+  float angle = 1;
+}
+
+message CommandResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// LED control requests
+message LEDRequest {
+  bool on = 1;  // true to turn on, false to turn off
+}
+
+message WheelLEDRequest {
+  int32 wheel_number = 1;  // 1 to 6 for each wheel's LED
+  bool on = 2;
+}
+
+// Measurement requests and responses
+message UltrasoundRequest {}
+
+message UltrasoundResponse {
+  float distance = 1;
+}
+
+message CameraStreamRequest {}
+
+message CameraStreamResponse {
+  string stream_url = 1; // RTSP or HTTP stream URL
+}
