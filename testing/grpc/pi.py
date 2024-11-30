@@ -14,6 +14,11 @@ class Pi:
         response = self.stub.DriveForward(request)
         print("DriveForward Response:", response.message)
 
+    def stop(self, request, context):
+        request = mars_rover_pb2.StopRequest()
+        response = self.stub.Stop(request)
+        print("DriveForward Response:", response.message)
+
     def reverse(self, speed):
         request = mars_rover_pb2.DriveRequest(speed=speed)
         response = self.stub.Reverse(request)
