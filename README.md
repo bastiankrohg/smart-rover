@@ -75,5 +75,19 @@ First create a venv and activate it -> link: https://www.google.com/url?sa=t&sou
 - pip3 install smbus
 - smbus.SMBus(1) FileNotFoundError: No such file or directory -> Activate i2c interface using sudo raspi-config -> interface -> enable (enable both i2c & SPI)
 - ...
+#### missions for 12/12/24
+LG : 
 
+- find and implement a light model of AI supported by the Raspberry pi 0 for obstacles recognition on the camera images (yes/no and if yes the direction) by using YOLOv4 mini 
+- maping the environement by tracing the rover's displacements and presenting camera direction 
 
+Bastian : 
+
+- improve the camera driver for lower latency and estimate it 
+- website for real time informations about  the rover 
+- update the coral the code on the coral and the raspberry 
+- calibration of the rover's movements
+
+Lan :
+
+- implement the AI for beer recognition on the coral 
