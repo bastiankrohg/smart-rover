@@ -1,79 +1,131 @@
-# Rover
-Robotics project - final year INSA Toulouse
+# Rover Project
 
-## Things we might want to check out
-https://medium.com/home-wireless/headless-streaming-video-with-the-raspberry-pi-zero-w-and-raspberry-pi-camera-38bef1968e1
-https://www.linux-projects.org
-https://www.linux-projects.org/uv4l/object-detection-with-depth-estimation/
-https://github.com/Qengineering/TensorFlow_Lite_Classification_RPi_zero
+Robotics project for the final year at INSA Toulouse, featuring a modular system for hardware control, mapping, and vision-based autonomous/semi-autonomous navigation.
 
-# Nice to have
-## Adding several known wifis
-https://raspberrypi.stackexchange.com/questions/11631/how-to-setup-multiple-wifi-networks
+## 1. Overview
 
-## Export files from raspberry pi
-scp rover@\<IP Address of Raspberry Pi>:\<Path to File> 
+This repository serves as the main entry point for the project, which is structured into the following submodules:
 
-## Safely shut down raspberry pi
-sudo halt -p
-or: sudo poweroff
-or: sudo shutdown -h now 
+- **[Rover-Pi](https://github.com/bastiankrohg/rover-pi):** Handles hardware control (motors, sensors, camera).
+- **[Rover-Coral](https://github.com/bastiankrohg/rover-coral):** Manages higher-level logic and mapping functionality, leveraging the Google Coral Dev Board.
+- **[Rover-Protos](https://github.com/bastiankrohg/rover-protos):** Contains the gRPC proto definitions for communication between modules.
+- **[Rover-Vision](https://github.com/bastiankrohg/rover-vision):** Handles computer vision testing and model training.
 
-## Controlling the raspberry pi camera
-Guide: https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/3
+Each submodule contains its own README with detailed setup and usage instructions.
 
-## Set up rtsp stream for raspi and raspicam
-https://github.com/bluenviron/mediamtx?tab=readme-ov-file#rtsp-cameras-and-servers
-Install mediamtx, set up using [this guide]([url](https://james-batchelor.com/index.php/2023/11/10/install-mediamtx-on-raspbian-bookworm/))
-NB! I lowered the bitrate and the resolution because with the configuration in James' example it crashed (not sure if internet repeater or pi zero who crashed).
-I now use 
-paths:
-  cam:
-    source: rpiCamera
-    rpiCameraWidth: 640 # instead of 1080
-    rpiCameraHeight: 480 # instead of 720
-    rpiCameraVFlip: true
-    rpiCameraHFlip: true
-    rpiCameraBitrate: 500000 # instead of 1500000
+## 2. Features
 
-# Assembly and setup information
-details of assembly : https://4tronix.co.uk/blog/?p=2112
-Rover coding examples : https://github.com/4tronix/MARS-Rover
-How to set up static ip on raspberry pi: https://www.youtube.com/watch?v=d1y1ZIIX-XQ&t=293s
+- Modular design with gRPC-based communication.
+- Real-time mapping and path tracing.
+- Remote control with hardware interfacing for sensors and motors.
+- RTSP video streaming from the PiCamera2 on the Raspberry Pi Zero.
+- Testing and training of computer vision models for resource detection.
 
-Pi zeros are currently configured to work with Bastian's home wifi. This can be changed by 1) Rewriting the SD card with new network name & password using raspberry imager or 2) using "sudo raspi-config" after establishing a remote connection
+## 3. Quick Start Guide
 
-### IP Addresses
-IP @ rover : 192.168.0.168 [TODO]
-IP @ rover2 : 192.168.0.169
+### Cloning the Repository with Submodules
+```bash
+git clone --recurse-submodules git@github.com:bastiankrohg/smart-rover.git
+cd smart-rover
+```
+If submodules are not cloned, initialize them:
+```bash
+git submodule update --init --recursive
+```
 
-### Connecting remotely to rovers
-Rover: ssh rover@rover.local **or** ssh rover@192.168.0.168
+### Setting Up the Environment
 
-Rover2: ssh rover2@rover2.local **or** ssh rover2@192.168.0.169
+1. Follow the setup instructions in the respective submodules:
+   - [Rover-Pi Setup](https://github.com/bastiankrohg/rover-pi#readme): Configure and control the rover's hardware.
+   - [Rover-Coral Setup](https://github.com/bastiankrohg/rover-coral#readme): Manage mapping, gRPC communication, and high-level control.
+   - [Rover-Vision Setup](https://github.com/bastiankrohg/rover-vision#readme): Train and test computer vision models for resource detection.
+   - [Rover-Protos Setup](https://github.com/bastiankrohg/rover-protos#readme): Update and compile gRPC protobufs.
 
-how to connect to the raspberry :
-![image](https://github.com/user-attachments/assets/ab559dd2-974e-4bb3-a19c-3d8b0c0d7cd0)
+2. Configure communication:
+   - Assign static IPs for the Raspberry Pi and Coral Dev Board.
+   - Ensure the devices can communicate over the same local network.
 
-### Adding git ssh verification for raspberry pi
-First, ensure that the git repo is cloned using ssh, not https to avoid having to reconfigure the "remote.origin.url".
-If need be, use the following command: git config remote.origin.url "git@github.com:bastiankrohg/smart-rover.git"
-Generate key and add to git:
-https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?platform=linux
+### Running the System
 
-Ensure user.email + user.name is set globally, if requested.
+1. **Start Hardware Control:**
+   - Launch the `rover-pi` control script on the Raspberry Pi:
+     ```bash
+     python3 rover-pi/pi_v2.py
+     ```
 
-### Rover python guide
-- https://4tronix.co.uk/blog/?p=2409
+2. **Start Mapping and Control:**
+   - Launch the `rover-coral` mapping and control module on the Coral Dev Board:
+     ```bash
+     python3 rover-coral/control.py
+     ```
 
-### Known Issues
-#### Testing Rover with python examples from 4tronix:
-SETUP & TEST ROVER - Missing packages to run calibrateServos.py:
-First create a venv and activate it -> link: https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://docs.python.org/3/library/venv.html&ved=2ahUKEwiMwJet44aJAxVkfKQEHfyqNXAQFnoECAgQAQ&usg=AOvVaw1SQ6VGTcJCX7W6wOs1SpnV
-- missing rpi-ws281x -> sudo pip install rpi-ws281x --break-system-packages
-- missing RPi.GPIO -> pip install RPi.GPIO
-- pip3 install smbus
-- smbus.SMBus(1) FileNotFoundError: No such file or directory -> Activate i2c interface using sudo raspi-config -> interface -> enable (enable both i2c & SPI)
-- ...
+3. **Access RTSP Stream:**
+   - View the live video stream from the PiCamera2 at:
+     ```
+     rtsp://<pi-ip>:5054/cam
+     ```
+   - Replace `<pi-ip>` with the actual IP address of the Raspberry Pi.
 
+4. **Interact with the Rover:**
+   - Use gRPC clients or manual scripts to control movement and mapping.
 
+## 4. RTSP Streaming with Mediamtx
+
+The Raspberry Pi Zero streams video from the PiCamera2 using [Mediamtx](https://github.com/bluenviron/mediamtx).
+
+- **Configuration:**
+  - Resolution: 640x480
+  - Bitrate: 500 kbps
+  - Horizontal and vertical flip enabled for correct orientation.
+
+- **Access:**
+  - Stream Address: `rtsp://<pi-ip>:5054/cam`
+
+Mediamtx is installed as a systemd service and starts automatically on boot.
+
+## 5. Future Improvements
+
+- **Integration:**
+  - Synchronize mapping and hardware control for seamless operation.
+
+- **Autonomous Navigation:**
+  - Implement algorithms for obstacle detection, path planning, and search patterns.
+
+- **Telemetry Dashboard:**
+  - Develop a dashboard to display real-time rover telemetry and performance metrics.
+
+- **Enhanced Calibration:**
+  - Integrate odometry data from motor encoders for precise movement tracking.
+
+- **Vision-Based Navigation:**
+  - Incorporate trained models from `rover-vision` for real-time decision-making.
+
+## 6. Archived Notes
+
+### References
+- [4tronix Assembly Guide](https://4tronix.co.uk/blog/?p=2112)
+- [Raspberry Pi OS](https://www.raspberrypi.com/software/operating-systems/)
+- [Programming M.A.R.S. Rover](https://4tronix.co.uk/blog/?p=2409)
+
+### SSH Configuration
+- **Default IPs:**
+  - `Rover`: 192.168.0.168
+  - `Rover2`: 192.168.0.169
+- Connect via:
+  ```bash
+  ssh rover@192.168.0.168
+  ```
+- Safe Shutdown
+  ```bash
+  sudo shutdown -h now
+  ```
+- Adding Known Wi-Fi Networks
+  - [Setting up multiple known wifi networks]([https://4tronix.co.uk/blog/?p=2112](https://raspberrypi.stackexchange.com/questions/11631/how-to-setup-multiple-wifi-networks))
+
+- Troubleshooting
+  - Missing python packages:
+  ```bash
+  pip install rpi-ws281x RPi.GPIO smbus
+  ```
+  - Missing I2C/SPI configuration:
+  Enable in sudo raspi-config.
