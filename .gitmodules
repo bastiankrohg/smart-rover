@@ -16,3 +16,6 @@
 [submodule "rover_protos"]
 	path = rover_protos
 	url = git@github.com:bastiankrohg/rover_protos.git
+[submodule "rover-telemetry"]
+	path = rover-telemetry
+	url = https://github.com/bastiankrohg/rover-telemetry.git
